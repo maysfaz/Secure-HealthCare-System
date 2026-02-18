@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureHealth | Professional Medical Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <nav class="container">
+                <div class="logo">⚕️ SecureHealth</div>
+                <ul id="nav-links">
+                    <li class="guest-only"><a href="#" data-page="home">Home</a></li>
+                    <li class="auth-only" style="display: none;"><a href="#" data-page="dashboard">Dashboard</a></li>
+                    <li class="patient-only" style="display: none;"><a href="#" data-page="book">Book Appointment</a>
+                    </li>
+                    <li class="doctor-only" style="display: none;"><a href="#" data-page="new-record">New Medical
+                            Record</a></li>
+                    <li class="admin-only" style="display: none;"><a href="#" data-page="logs">Audit Logs</a></li>
+                </ul>
+                <div id="user-nav">
+                    <button id="btn-signup" class="btn btn-primary">Sign Up</button>
+                    <button id="btn-login" class="btn btn-outline">Sign In</button>
+                    <button id="btn-logout" class="btn btn-primary" style="display: none;">Logout</button>
+                </div>
+            </nav>
+        </header>
+
+        <main class="container">
+            <section id="home" class="page">
+                <div class="hero">
+                    <h1>Your Health, <br> Secured by Design</h1>
+                    <p>Experience a premium healthcare portal built with modern security modeling and layered
+                        architecture.</p>
+                    <button class="btn btn-primary btn-lg" onclick="app.showPage('register')">Create Account
+                        Now</button>
+                </div>
+            </section>
+
+            <section id="register" class="page" style="display: none;">
+                <div class="auth-card glass">
+                    <h2>Create Account</h2>
+                    <form id="register-form">
+                        <input type="text" name="name" placeholder="Full Name" required class="input">
+                        <input type="email" name="email" placeholder="Email" required class="input">
+                        <input type="password" name="password" placeholder="Password" required class="input">
+                        <select name="role" class="input" required>
+                            <option value="patient">I am a Patient</option>
+                            <option value="doctor">I am a Doctor</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                    </form>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem;">
+                        Already have an account? <a href="#" onclick="app.showPage('login')">Sign In</a>
+                    </p>
+                </div>
+            </section>
+
+            <section id="login" class="page" style="display: none;">
+                <div class="auth-card glass">
+                    <h2>Sign In</h2>
+                    <form id="login-form">
+                        <input type="email" name="email" placeholder="Email" required class="input">
+                        <input type="password" name="password" placeholder="Password" required class="input">
+                        <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                    </form>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem;">
+                        Don't have an account? <a href="#" onclick="app.showPage('register')">Sign Up</a>
+                    </p>
+                </div>
+            </section>
+
+            <section id="dashboard" class="page" style="display: none;">
+                <h2 id="welcome-text">Welcome back!</h2>
+                <div id="dashboard-content" class="grid">
+                    <!-- Cards injected here -->
+                </div>
+            </section>
+
+            <section id="book" class="page" style="display: none;">
+                <h2>Book Appointment</h2>
+                <form id="book-form" class="glass p-2">
+                    <div class="form-group">
+                        <label>Doctor</label>
+                        <select name="doctorId" id="doctor-select" class="input" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" name="date" class="input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Time</label>
+                        <input type="time" name="time" class="input" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                </form>
+            </section>
+
+            <section id="new-record" class="page" style="display: none;">
+                <h2>Add Medical Record</h2>
+                <form id="record-form" class="glass p-2">
+                    <div class="form-group">
+                        <label>Patient</label>
+                        <select name="patientId" id="patient-select" class="input" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Description (Diagnoses, Prescriptions, Notes)</label>
+                        <textarea name="description" class="input" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Record</button>
+                </form>
+            </section>
+
+            <section id="logs" class="page" style="display: none;">
+                <h2>System Audit Logs</h2>
+                <div class="glass" style="overflow-x: auto;">
+                    <table class="table" id="logs-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>User</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
